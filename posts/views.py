@@ -10,6 +10,7 @@ class PublicationViewSet(viewsets.ModelViewSet):
 class ReactionViewSet(viewsets.ModelViewSet):
     queryset = Reaction.objects.all()
     serializer_class = ReactionSerializer
+    
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()

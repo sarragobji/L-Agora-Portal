@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 
 from users.models import Utilisateur
@@ -23,10 +25,17 @@ class Publication(models.Model):
     utilisateur = models.ManyToManyField(Utilisateur, through='Reaction', related_name='reactions')
     class Meta:
         db_table = 'publications'
+
+class ReactType(models.TextChoices):
+    LIKE = 'Like', 'Like 👍'
+    LOVE = 'Love', 'Love ❤️'
+    HAHA = 'Haha', 'Haha 😂'
+    SAD = 'Sad', 'Sad 😢'
+    ANGRY = 'Angry', 'Angry 😡'
     
 
 class Reaction(models.Model):
-    react_type = models.CharField(max_length=50) # e.g., Like, Love, etc.
+    react_type = models.CharField(max_length=50, choices=ReactType.choices,default=ReactType.LIKE) # e.g., Like, Love, etc.
     user = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
     publication = models.ForeignKey(Publication, on_delete=models.CASCADE)
     class Meta:
@@ -38,6 +47,7 @@ class Reaction(models.Model):
             )
         ]
 
+
 class Signalement(models.Model):
     reason = models.TextField()
     date_sig = models.DateTimeField(auto_now_add=True)
@@ -46,3 +56,4 @@ class Signalement(models.Model):
     publication = models.ForeignKey(Publication, on_delete=models.CASCADE)
     class Meta:
         db_table = 'signalements'
+
