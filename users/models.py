@@ -6,8 +6,10 @@ class Role(models.Model):
 
     def __str__(self):
         return self.role_name
+    class Meta:
+        db_table = 'roles'
 
-class Utilisateur(AbstractUser):
+class Utilisateur(models.Model):
     # AbstractUser already has username, email, password, etc.
     pseudonyme = models.CharField(max_length=100, unique=True)
     point_solidaire = models.IntegerField(default=0)
@@ -15,14 +17,16 @@ class Utilisateur(AbstractUser):
     is_active = models.BooleanField(default=True)
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
-
-class Profile(models.Model):
-    user = models.OneToOneField(Utilisateur, on_delete=models.CASCADE)
     bio = models.TextField(blank=True)
     photo = models.ImageField(upload_to='profiles/', null=True, blank=True)
+    class Meta:
+        db_table = 'utilisateurs'
+    
 
 class Notification(models.Model):
     user = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
     message = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     is_read = models.BooleanField(default=False)
+    class Meta:
+        db_table = 'notifications'
