@@ -11,6 +11,10 @@ class Role(models.Model):
 
 class Utilisateur(models.Model):
     pseudonyme = models.CharField(max_length=100, unique=True)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    password = models.CharField(max_length=128)
+    email = models.EmailField(null=False)
     point_solidaire = models.IntegerField(default=0)
     role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)
     is_active = models.BooleanField(default=True)
