@@ -97,4 +97,4 @@ npm start
 
 ---
 
-*Ce projet a été réalisé dans le cadre du module de Programmation Transverse (PPG) avec un coefficient de 3.*
+*Ce projet a été réalisé dans le cadre du module de Programmation Transverse (PPG)*
