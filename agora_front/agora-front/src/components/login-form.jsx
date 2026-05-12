@@ -49,6 +49,7 @@ export function LoginForm({ className, ...props }) {
       // Check the 'ok' key from your Django response
       if (data.ok === true) {
         alert("Login successful!")
+        Navigate("/") 
       } else {
         alert("Invalid email or password")
       }
