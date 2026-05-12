@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'agora_db',           
         'USER': 'root',               
-        'PASSWORD': '1234', 
+        'PASSWORD': 'admin', 
         'HOST': 'localhost',          
         'PORT': '3306',               
     }
@@ -127,21 +127,4 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-CORS_ALLOW_ALL_ORIGINS = [
-    "http://localhost:5173",
-]
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    ),
-    
-}
-DJOSER = {
-        'USER_CREATE_PASSWORD_RETYPE': True,
-        'SERIALIZERS': {
-            'user_create': 'users.serializers.UserCreateSerializer', # You will create this next
-            'user': 'users.serializers.UtilisateurSerializer', #existing serializer for user details
-        },
-    }
+CORS_ALLOW_ALL_ORIGINS = True
