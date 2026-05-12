@@ -11,13 +11,22 @@ class UtilisateurViewSet(viewsets.ModelViewSet):
     serializer_class = UtilisateurSerializer
     @action(detail=False, methods=['post'], permission_classes=[AllowAny])
     def check_login(self, request):
-        username = request.data.get('username')
-        password = request.data.get('password')
-        user = authenticate(username=username, password=password)
+        email = request.data.get('email')
+        pwd = request.data.get('password')
+        try:
+            
+            user_exists = Utilisateur.objects.filter(
+                email=email, 
+                password=pwd
+            ).exists()
 
-        if user is not None:
-            return Response({"ok": True})
-        return Response({"ok": False})
+            if user_exists:
+                return Response({"ok": True})
+            else:
+                return Response({"ok": False})
+                
+        except Exception:
+            return Response({"ok": False, "error": "Server error"}, status=500)
 
 class NotificationViewSet(viewsets.ModelViewSet):
     queryset = Notification.objects.all()

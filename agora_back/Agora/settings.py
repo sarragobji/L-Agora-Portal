@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'agora_db',           
         'USER': 'root',               
-        'PASSWORD': 'admin', 
+        'PASSWORD': '1234', 
         'HOST': 'localhost',          
         'PORT': '3306',               
     }
