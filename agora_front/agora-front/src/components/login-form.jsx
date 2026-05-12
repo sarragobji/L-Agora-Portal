@@ -1,4 +1,5 @@
-import { useState } from "react" // Problem 1: This was missing
+import { useState } from "react"
+import { useNavigate } from "react-router-dom" // Added for navigation
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -13,13 +14,16 @@ import { Input } from "@/components/ui/input"
 import loginImage from "@/assets/register_img.png"
 
 export function LoginForm({ className, ...props }) {
+  // 1. Initialize the navigate hook
+  const navigate = useNavigate()
+
   // State for email and password
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   })
 
-  // Problem 2: handleChange must be its own separate function
+  // Handle input changes
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -27,12 +31,11 @@ export function LoginForm({ className, ...props }) {
     })
   }
 
-  // Problem 3: handleSubmit was stuck inside handleChange. Fixed.
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     try {
-      // Added trailing slash / for Django
       const response = await fetch(
         "http://127.0.0.1:8000/api/utilisateurs/check_login/",
         {
@@ -49,7 +52,8 @@ export function LoginForm({ className, ...props }) {
       // Check the 'ok' key from your Django response
       if (data.ok === true) {
         alert("Login successful!")
-        Navigate("/") 
+        // 2. Use the navigate function (lowercase)
+        navigate("/under-construction") 
       } else {
         alert("Invalid email or password")
       }
@@ -91,7 +95,6 @@ export function LoginForm({ className, ...props }) {
                     Forgot your password?
                   </a>
                 </div>
-                {/* Problem 4: password field was missing value and onChange */}
                 <Input
                   id="password"
                   type="password"

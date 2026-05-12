@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 
-export default function Homepage() {
+export default function UnderConstruction() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-100 flex items-center justify-center p-4">
       <Card className="w-full max-w-md border-t-4 border-t-amber-500 shadow-xl">
