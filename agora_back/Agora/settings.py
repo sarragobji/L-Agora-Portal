@@ -128,17 +128,3 @@ STATIC_URL = 'static/'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    ),
-    
-}
-DJOSER = {
-        'USER_CREATE_PASSWORD_RETYPE': True,
-        'SERIALIZERS': {
-            'user_create': 'users.serializers.UserCreateSerializer', # You will create this next
-            'user': 'users.serializers.UtilisateurSerializer', #existing serializer for user details
-        },
-    }
