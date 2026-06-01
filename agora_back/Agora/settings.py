@@ -82,11 +82,11 @@ WSGI_APPLICATION = 'Agora.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'agora_db',           
-        'USER': 'root',               
-        'PASSWORD': '1234', 
-        'HOST': 'localhost',          
-        'PORT': '3306',               
+        'NAME': 'agora_db',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
